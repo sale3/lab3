@@ -56,4 +56,18 @@ PORT S_AXI_BRESP = BRESP, DIR = O, VEC = [1:0], BUS = S_AXI
 PORT S_AXI_BVALID = BVALID, DIR = O, BUS = S_AXI
 PORT S_AXI_AWREADY = AWREADY, DIR = O, BUS = S_AXI
 
+
+PORT clk_i = "", DIR = I, SIGIS = CLK
+PORT reset_n_i = "", DIR = I, SIGIS = RST
+PORT vga_hsync_o = "", DIR = I
+PORT vga_vsync_o = "", DIR = I
+PORT blank_o = "", DIR = I
+PORT pix_clock_o = "", DIR = I
+PORT psave_o = "", DIR = I
+PORT sync_o = "", DIR = I
+PORT red_o = "", DIR = I, VEC = [7:0]
+PORT green_o = "", DIR = I, VEC = [7:0]
+PORT blue_o = "", DIR = I, VEC = [7:0]
+
+
 END

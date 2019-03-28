@@ -18,6 +18,17 @@
  PORT DIP_Switches_TRI_I = DIP_Switches_TRI_I, DIR = I, VEC = [0:7]
  PORT CLK_P = CLK, DIR = I, DIFFERENTIAL_POLARITY = P, SIGIS = CLK, CLK_FREQ = 50000000
  PORT CLK_N = CLK, DIR = I, DIFFERENTIAL_POLARITY = N, SIGIS = CLK, CLK_FREQ = 50000000
+ PORT vga_peripheral_0_clk_i_pin = net_vga_peripheral_0_clk_i_pin, DIR = I, SIGIS = CLK
+ PORT vga_peripheral_0_reset_n_i_pin = net_vga_peripheral_0_reset_n_i_pin, DIR = I, SIGIS = RST
+ PORT vga_peripheral_0_vga_hsync_o_pin = net_vga_peripheral_0_vga_hsync_o_pin, DIR = I
+ PORT vga_peripheral_0_vga_vsync_o_pin = net_vga_peripheral_0_vga_vsync_o_pin, DIR = I
+ PORT vga_peripheral_0_blank_o_pin = net_vga_peripheral_0_blank_o_pin, DIR = I
+ PORT vga_peripheral_0_pix_clock_o_pin = net_vga_peripheral_0_pix_clock_o_pin, DIR = I
+ PORT vga_peripheral_0_psave_o_pin = net_vga_peripheral_0_psave_o_pin, DIR = I
+ PORT vga_peripheral_0_sync_o_pin = net_vga_peripheral_0_sync_o_pin, DIR = I
+ PORT vga_peripheral_0_red_o_pin = net_vga_peripheral_0_red_o_pin, DIR = I, VEC = [7:0]
+ PORT vga_peripheral_0_green_o_pin = net_vga_peripheral_0_green_o_pin, DIR = I, VEC = [7:0]
+ PORT vga_peripheral_0_blue_o_pin = net_vga_peripheral_0_blue_o_pin, DIR = I, VEC = [7:0]
 
 
 BEGIN proc_sys_reset
@@ -170,5 +181,25 @@ BEGIN axi_gpio
  BUS_INTERFACE S_AXI = axi4lite_0
  PORT S_AXI_ACLK = clk_100_0000MHz
  PORT GPIO_IO_I = DIP_Switches_TRI_I
+END
+
+BEGIN vga_peripheral
+ PARAMETER INSTANCE = vga_peripheral_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x7fc00000
+ PARAMETER C_HIGHADDR = 0x7fc0ffff
+ BUS_INTERFACE S_AXI = axi4lite_0
+ PORT S_AXI_ACLK = clk_100_0000MHz
+ PORT clk_i = net_vga_peripheral_0_clk_i_pin
+ PORT reset_n_i = net_vga_peripheral_0_reset_n_i_pin
+ PORT vga_hsync_o = net_vga_peripheral_0_vga_hsync_o_pin
+ PORT vga_vsync_o = net_vga_peripheral_0_vga_vsync_o_pin
+ PORT blank_o = net_vga_peripheral_0_blank_o_pin
+ PORT pix_clock_o = net_vga_peripheral_0_pix_clock_o_pin
+ PORT psave_o = net_vga_peripheral_0_psave_o_pin
+ PORT sync_o = net_vga_peripheral_0_sync_o_pin
+ PORT red_o = net_vga_peripheral_0_red_o_pin
+ PORT green_o = net_vga_peripheral_0_green_o_pin
+ PORT blue_o = net_vga_peripheral_0_blue_o_pin
 END
 
